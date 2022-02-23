@@ -1,5 +1,13 @@
-import swimController from "./controllers/swimController";
+import express from 'express'
+import swimRouter from './routers/swimRouter'
 
-swimController.createSwim(60, "pool", new Date ("9/14/1981"))
-let result = swimController.getAllSwims()
-console.log(result)
+const app = express();
+
+const PORT = 8080;
+
+app.get('/', (_, res) => res.send ('Welcome to the server'))
+app.use('/swim', swimRouter);
+
+app.listen(PORT, () => {
+  console.log(`Server is running at https://localhost:${PORT}`)
+});
