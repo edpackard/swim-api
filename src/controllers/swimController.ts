@@ -1,9 +1,13 @@
-import swimData from "../data/swimData"
+import * as database from "../data/swimData"
 
-class Controller {
+class swimController {
+  static createSwim(lengths: number, pool: string, date: Date) {
+    database.saveData({lengths, pool, date})
+  }
+
   static getAllSwims(): Array<any> {
-    return swimData.data()
+    return database.getData()
   }
 }
 
-export default Controller
+export default swimController

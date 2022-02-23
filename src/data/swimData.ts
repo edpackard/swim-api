@@ -1,14 +1,11 @@
-class swimData {
+import { Swim } from '../models/SwimModel'
 
-  static data(): Array<any> {
-    console.log("in the data class!")
-    return [
-      {
-        date: "2022-02-01T00:00:00.000Z",
-        lengths: 40,
-        pool: "Olympic Pool",
-      },
-    ]
+const data: Array<Swim> = []
+
+export const getData = (): Array<Swim> => {
+    return data
   }
-}
-export default swimData
+
+export const saveData = (object: Swim) => {
+    data.push(object)
+  }
