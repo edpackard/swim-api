@@ -1,7 +1,9 @@
+import swimData from "../data/swimData"
+
 class Controller {
-  static getAllSwims(): any {
-    return []  
-}
+  static getAllSwims(): Array<any> {
+    return swimData.data()
+  }
 }
 
 export default Controller
