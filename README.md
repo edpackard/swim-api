@@ -1,0 +1,1 @@
+Playing with TypeScript - trying to build an API to log swims.
