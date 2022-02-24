@@ -15,7 +15,7 @@ describe('getAllSwims', () => {
   });
 
   it('returns array with swims if objects stored', () => {
-  const mockSwim = { lengths: 40, pool: 'Lido', date: new Date ("1/22/22") }
+  const mockSwim = { id: 1, lengths: 40, pool: 'Lido', date: new Date ("1/22/22") }
   mockedDatabase.getData.mockReturnValue([mockSwim])
   const result = swimController.getAllSwims()
   expect(mockedDatabase.getData).toHaveBeenCalled()
@@ -25,9 +25,9 @@ describe('getAllSwims', () => {
 })
 
 describe('createSwim', () => {
-  it('saves a new swim object', () => {
+  it('saves a new swim object with ID', () => {
   const date = new Date("1/1/22")
-  const swimObject = { lengths: 60, pool: "Local Pool", date: date }
+  const swimObject = { id: 1, lengths: 60, pool: "Local Pool", date: date }
   swimController.createSwim(60, "Local Pool", date )
   expect(mockedDatabase.saveData).toHaveBeenCalledWith(swimObject)
   })

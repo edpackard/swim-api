@@ -8,4 +8,8 @@ swimRouter.get('/', (_, res) => {
   res.json(allSwims)
 })
 
+swimRouter.post('/', (req, res) => {
+  console.log(req.params)
+})
+
 export default swimRouter

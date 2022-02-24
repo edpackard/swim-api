@@ -1,6 +1,6 @@
 import { Swim } from '../models/SwimModel'
 
-const data: Array<Swim> = [{ lengths: 60, pool: "test data", date: new Date}]
+const data: Array<Swim> = [{ id: 1, lengths: 60, pool: "test data", date: new Date}]
 
 export const getData = (): Array<Swim> => {
     return data
