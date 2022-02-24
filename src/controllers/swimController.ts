@@ -7,7 +7,7 @@ class swimController {
   }
 
   getAllSwims(): Array<any> {
-    return database.getData()
+    return database.getAllData()
   }
 }
 
