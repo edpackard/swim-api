@@ -1,19 +1,25 @@
-import * as database from "../data/swimData"
+import SwimData from "../data/swimData"
 
-class swimController {
+class SwimController {
+
+  database: SwimData;
+
+  constructor (db: SwimData) {
+    this.database = db
+  }
 
   createSwim(lengths: number, pool: string, date: Date) {
     const id = this.getAllSwims().length + 1
-    database.saveData({id, lengths, pool, date})
+    this.database.saveData({id, lengths, pool, date})
   }
 
   getSwim(id: number) {
-    return database.getData(id)
+    return this.database.getData(id)
   }
 
   getAllSwims(): Array<any> {
-    return database.getAllData()
+    return this.database.getAllData()
   }
 }
 
-export default new swimController
+export default SwimController

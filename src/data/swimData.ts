@@ -1,15 +1,29 @@
 import { Swim } from '../models/SwimModel'
 
-const data: Array<Swim> = [{ id: 1, lengths: 60, pool: "test data", date: new Date}]
+class SwimData {
+  
+  data: Array<Swim>
 
-export const getAllData = (): Array<Swim> => {
-  return data
+  constructor() {
+    this.data = []
+  }
+
+  getAllData (): Array<Swim> {
+    return this.data
+  }
+
+  getData (id: number): Swim {
+    return this.data[id - 1]
+  }
+
+  saveData (object: Swim) {
+    this.data.push(object)
+  }
+
+  deleteData (id: number) {
+    this.data = []
+  }
+
 }
 
-export const getData = (id: number): Swim => {
-  return data[id - 1]
-}
-
-export const saveData = (object: Swim) => {
-  data.push(object)
-}
+export default SwimData
