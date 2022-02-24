@@ -26,6 +26,18 @@ describe('getAllSwims', () => {
   }) 
 })
 
+describe('getSwim', () => {
+
+  it('returns a swim based on ID', () => {
+    //const mockSwim = { id: 1, lengths: 40, pool: 'Lido', date: new Date ("1/22/22") }
+    const mockSwim2 = { id: 2, lengths: 45, pool: 'Another Pool', date: new Date ("1/30/22") }
+    mockedDatabase.getData.mockReturnValueOnce(mockSwim2)
+
+    const result = swimController.getSwim(2)
+    expect(result).toBe(mockSwim2)
+  })
+})
+
 describe('createSwim', () => {
   it('saves a new swim object with ID', () => {
     const date = new Date("1/1/22")
