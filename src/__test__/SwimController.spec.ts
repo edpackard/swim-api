@@ -69,4 +69,10 @@ describe('createSwim', () => {
     swimController.createSwim(40, "Local Pool", date2)
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject2)
   })
+
+  it('deletes a swim by id', () => {
+    jest.spyOn(mockDb, 'deleteData')
+    swimController.deleteSwim(1)
+    expect(mockDb.deleteData).toHaveBeenCalledWith(1)
+  })
 })

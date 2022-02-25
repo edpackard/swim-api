@@ -13,6 +13,10 @@ class SwimController {
     this.database.saveData({id, lengths, pool, date})
   }
 
+  deleteSwim(id: number) {
+    this.database.deleteData(id)
+  }
+
   getSwim(id: number) {
     return this.database.getData(id)
   }
