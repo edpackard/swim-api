@@ -22,6 +22,11 @@ class Database {
     this.data = this.data.filter ( item => item.id !== id) 
   }
 
+  updateData (updatedData: any) {
+    const dataIndex = this.data.findIndex( data => data.id === updatedData.id)
+    this.data[dataIndex] = updatedData
+  }
+
 }
 
 export default Database
