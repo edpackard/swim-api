@@ -27,7 +27,9 @@ describe('deleteData', () => {
     db.saveData(swimObject)
     const swimObject2 = { id: 2, lengths: 300, pool: "Paddling Pool", date: new Date('4/4/14') }
     db.saveData(swimObject2)
+    
     db.deleteData(1)
+    
     const allData = db.getAllData()
     expect(allData).toHaveLength(1)
     expect(allData).toStrictEqual([swimObject2])

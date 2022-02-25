@@ -1,5 +1,5 @@
 import SwimController from '../controllers/SwimController'
-import SwimData from '../data/swimData'
+import SwimData from '../data/SwimData'
 
 jest.mock('../data/swimData')
 const mockedDatabase = (SwimData as unknown) as jest.Mock<SwimData>;
