@@ -1,8 +1,8 @@
 import { Router } from "express"
 import SwimController from "../controllers/SwimController"
-import SwimData from "../data/SwimData";
+import Database from "../data/Database";
 
-const swimController = new SwimController(new SwimData)
+const swimController = new SwimController(new Database)
 const swimRouter = Router();
 
 swimRouter.get('/', (_, res) => {
@@ -25,10 +25,19 @@ swimRouter.post('/', (req, res) => {
   res.status(201).end()
 })
 
+swimRouter.put('/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const lengths = req.body.lengths
+  const pool =  req.body.pool
+  const date = req.body.date
+  swimController.updateSwim(id, lengths, pool, date)
+  res.status(204).end()
+})
+
 swimRouter.delete('/:id', (req, res) => {
-  const id = req.params.id
-  // call delete swim controller here
-  res.status(200).end()
+  const id = parseInt(req.params.id)
+  swimController.deleteSwim(id)
+  res.status(204).end()
   //TODO: handle if id doesn't exist
 })
 
