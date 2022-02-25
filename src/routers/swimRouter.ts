@@ -18,4 +18,10 @@ swimRouter.post('/', (req, res) => {
   res.status(201).end()
 })
 
+swimRouter.delete('/:id', (req, res) => {
+  const id = req.params
+  // call delete swim controller here
+  res.status(200).end()
+})
+
 export default swimRouter
