@@ -21,13 +21,7 @@ class SwimData {
   }
 
   deleteData (id: number) {
-    let newData: Array<Swim> = []
-    this.data.map( item => {
-      if (item.id !== id) {
-        newData.push(item)
-      }
-    })
-    this.data = newData
+    this.data = this.data.filter ( item => item.id !== id) 
   }
 
 }
