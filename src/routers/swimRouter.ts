@@ -1,6 +1,6 @@
 import { Router } from "express"
 import SwimController from "../controllers/SwimController"
-import SwimData from "../data/swimData";
+import SwimData from "../data/SwimData";
 
 const swimController = new SwimController(new SwimData)
 const swimRouter = Router();

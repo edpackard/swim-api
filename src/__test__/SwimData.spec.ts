@@ -1,4 +1,4 @@
-import SwimData from '../data/swimData'
+import SwimData from '../data/SwimData'
 
 let db: SwimData;
 
@@ -25,8 +25,12 @@ describe('deleteData', () => {
   it('removes an item from database by ID', () => {
     const swimObject = { id: 1, lengths: 200, pool: "Paddling Pool", date: new Date('3/3/13') }
     db.saveData(swimObject)
+    const swimObject2 = { id: 2, lengths: 300, pool: "Paddling Pool", date: new Date('4/4/14') }
+    db.saveData(swimObject2)
     db.deleteData(1)
-    expect(db.getAllData()).toHaveLength(0)
+    const allData = db.getAllData()
+    expect(allData).toHaveLength(1)
+    expect(allData).toStrictEqual([swimObject2])
   })
 })
 

@@ -1,4 +1,4 @@
-import SwimData from "../data/swimData"
+import SwimData from "../data/SwimData"
 
 class SwimController {
 
