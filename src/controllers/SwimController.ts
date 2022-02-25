@@ -1,10 +1,10 @@
-import SwimData from "../data/SwimData"
+import Database from "../data/Database"
 
 class SwimController {
 
-  database: SwimData;
+  database: Database;
 
-  constructor (db: SwimData) {
+  constructor (db: Database) {
     this.database = db
   }
 

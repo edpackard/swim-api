@@ -1,9 +1,9 @@
 import SwimController from '../controllers/SwimController'
-import SwimData from '../data/SwimData'
+import Database from '../data/Database'
 
-jest.mock('../data/swimData')
-const mockedDatabase = (SwimData as unknown) as jest.Mock<SwimData>;
-let mockDb: SwimData
+jest.mock('../data/Database')
+const mockedDatabase = (Database as unknown) as jest.Mock<Database>;
+let mockDb: Database
 let swimController: SwimController
 
 beforeEach(() => {
