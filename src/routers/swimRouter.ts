@@ -10,6 +10,12 @@ swimRouter.get('/', (_, res) => {
   res.status(200).json(allSwims)
 })
 
+swimRouter.get('/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const swim = swimController.getSwim(id)
+  res.status(200).json(swim)
+})
+
 swimRouter.post('/', (req, res) => {
   const lengths = req.body.lengths
   const pool = req.body.pool
@@ -19,7 +25,7 @@ swimRouter.post('/', (req, res) => {
 })
 
 swimRouter.delete('/:id', (req, res) => {
-  const id = req.params
+  const id = req.params.id
   // call delete swim controller here
   res.status(200).end()
 })
