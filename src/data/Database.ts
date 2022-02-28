@@ -11,7 +11,7 @@ class Database {
   }
 
   getData (id: number): any {
-    const retrievedData = this.data[id - 1]
+    const retrievedData = this._getObjectById(id)
     if (retrievedData) {
       return retrievedData
     } else {
@@ -24,8 +24,7 @@ class Database {
   }
 
   deleteData (id: number) {
-    const retrievedData = this.data[id - 1]
-    if (retrievedData) {
+    if (this._getObjectById(id)) {
       this.data = this.data.filter (item => item.id !== id)
     } else {
       throw 'ID not found'
@@ -37,6 +36,9 @@ class Database {
     this.data[dataIndex] = updatedData
   }
 
+  _getObjectById (id: number) {
+    return this.data[id - 1]
+  }
 }
 
 export default Database
