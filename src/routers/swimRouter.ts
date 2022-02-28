@@ -25,8 +25,12 @@ swimRouter.post('/', (req, res) => {
   const lengths = req.body.lengths
   const pool = req.body.pool
   const date = req.body.date
-  swimController.createSwim(lengths, pool, date)
-  res.status(201).end()
+  try {
+    swimController.createSwim(lengths, pool, date)
+    res.status(201).end()
+  } catch (error) {
+    return res.status(400).json({ message: error})
+  }
 })
 
 swimRouter.put('/:id', (req, res) => {
