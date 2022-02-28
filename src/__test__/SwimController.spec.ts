@@ -1,14 +1,21 @@
 import SwimController from '../controllers/SwimController'
 import Database from '../data/Database'
+import ValidityChecker from '../utils/ValidityChecker'
 
 jest.mock('../data/Database')
 const mockedDatabase = (Database as unknown) as jest.Mock<Database>;
+
+jest.mock('../utils/ValidityChecker')
+const mockedValidityChecker = (ValidityChecker as unknown) as jest.Mock<ValidityChecker>;
+
 let mockDb: Database
+let mockVc: ValidityChecker
 let swimController: SwimController
 
 beforeEach(() => {
   mockDb = new mockedDatabase
-  swimController = new SwimController(mockDb)
+  mockVc = new mockedValidityChecker
+  swimController = new SwimController(mockDb, mockVc)
 })
 
 describe('getAllSwims', () => {
@@ -46,7 +53,7 @@ describe('getSwim', () => {
 })
 
 describe('createSwim', () => {
-  it('saves a new swim object with ID', () => {
+  it('saves a valid new swim object with ID', () => {
     const date = new Date("1/1/22")
     const swimObject = { id: 1, lengths: 60, pool: "Local Pool", date: date }
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([])

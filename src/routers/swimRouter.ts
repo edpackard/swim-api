@@ -1,8 +1,9 @@
 import { Router } from "express"
 import SwimController from "../controllers/SwimController"
 import Database from "../data/Database";
+import ValidityChecker from "../utils/ValidityChecker";
 
-const swimController = new SwimController(new Database)
+const swimController = new SwimController(new Database, new ValidityChecker)
 const swimRouter = Router();
 
 swimRouter.get('/', (_, res) => {
