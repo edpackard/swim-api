@@ -57,14 +57,20 @@ describe('createSwim', () => {
     const date = new Date("1/1/22")
     const swimObject = { id: 1, lengths: 60, pool: "Local Pool", date: date }
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([])
-
+    jest.spyOn(mockVc, 'isSwimValid').mockReturnValueOnce(true)
     swimController.createSwim(60, "Local Pool", date)
+    expect(mockVc.isSwimValid).toHaveBeenCalledWith(swimObject)
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject)
   })
 
-  it('does not save a swim object with invalid date format', () => {
-    const badDate = "date1"
-    //swimController.createSwim(60, "Local Pool", badDate)
+  it('does not save an invalid swim object with invalid date format', () => {
+    const badObject = { id: 1, lengths: "60", pool: 55, date: false }
+    jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([])
+    jest.spyOn(mockVc, 'isSwimValid').mockReturnValueOnce(false)
+    //@ts-expect-error
+    expect(()=>{ swimController.createSwim("60", 55, false) }).toThrowError('Error: not a swim object')
+    expect(mockVc.isSwimValid).toHaveBeenCalledWith(badObject)
+    expect(mockDb.saveData).not.toHaveBeenCalled()
   })
 
   it('generates sequential IDs', () => {
@@ -72,6 +78,8 @@ describe('createSwim', () => {
     const swimObject = { id: 1, lengths: 70, pool: "Olympic Pool", date: date }
     const date2 = new Date("3/3/22")
     const swimObject2 = { id: 2, lengths: 40, pool: "Local Pool", date: date2 }
+
+    jest.spyOn(mockVc, 'isSwimValid').mockReturnValue(true)
 
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([])
     swimController.createSwim(70, "Olympic Pool", date)

@@ -15,8 +15,11 @@ class SwimController {
   createSwim(lengths: number, pool: string, date: Date) {
     const id = this.getAllSwims().length + 1
     const newSwim = {id, lengths, pool, date}
-    this.validityCheck.isSwimValid(newSwim)
-    this.database.saveData(newSwim)
+    if (this.validityCheck.isSwimValid(newSwim)) {
+      this.database.saveData(newSwim)
+    } else {
+      throw 'Error: not a swim object'
+    }
   }
 
   deleteSwim(id: number) {
