@@ -11,7 +11,8 @@ class SwimController {
 
   createSwim(lengths: number, pool: string, date: Date) {
     const id = this.getAllSwims().length + 1
-    const newSwim: Swim = {id, lengths, pool, date}
+    const newSwim = {id, lengths, pool, date}
+    
     this.database.saveData(newSwim)
   }
 

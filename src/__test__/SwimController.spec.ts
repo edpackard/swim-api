@@ -1,6 +1,5 @@
 import SwimController from '../controllers/SwimController'
 import Database from '../data/Database'
-import { Swim } from '../models/SwimModel'
 
 jest.mock('../data/Database')
 const mockedDatabase = (Database as unknown) as jest.Mock<Database>;
@@ -54,7 +53,11 @@ describe('createSwim', () => {
 
     swimController.createSwim(60, "Local Pool", date)
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject)
-    expect(mockDb.saveData).toHaveBeenCalledWith(typeof Swim)
+  })
+
+  it('does not save a swim object with invalid date format', () => {
+    const badDate = "date1"
+    //swimController.createSwim(60, "Local Pool", badDate)
   })
 
   it('generates sequential IDs', () => {
