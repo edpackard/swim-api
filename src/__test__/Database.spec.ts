@@ -35,6 +35,16 @@ describe ('getData', () => {
     expect(db.getData(2)).toStrictEqual(swimObject2)
     expect(db.getData(3)).toStrictEqual(swimObject3)
   })
+
+  it('returns error if object ID does not exist in database', () => {
+    const swimObject = { id: 1, lengths: 40, pool: "Ironmonger Row", date: new Date('1/1/11') }
+    const swimObject2 = { id: 2, lengths: 40, pool: "Leisure Centre", date: new Date('2/2/13') }
+
+    db.saveData(swimObject)
+    db.saveData(swimObject2)
+
+    expect(() => {db.getData(3)}).toThrow('ID not found')
+  })
 })
 
 describe('deleteData', () => {

@@ -11,7 +11,12 @@ class Database {
   }
 
   getData (id: number): any {
-    return this.data[id - 1]
+    const retrievedData = this.data[id - 1]
+    if (retrievedData) {
+      return retrievedData
+    } else {
+      throw 'ID not found'
+    }
   }
 
   saveData (newData: any) {
@@ -19,7 +24,7 @@ class Database {
   }
 
   deleteData (id: number) {
-    this.data = this.data.filter ( item => item.id !== id) 
+    this.data = this.data.filter (item => item.id !== id) 
   }
 
   updateData (updatedData: any) {
