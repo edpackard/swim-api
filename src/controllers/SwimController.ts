@@ -11,8 +11,8 @@ class SwimController {
 
   createSwim(lengths: number, pool: string, date: Date) {
     const id = this.getAllSwims().length + 1
-    //TODO: test to ensure only a swim object is passed to db
-    this.database.saveData({id, lengths, pool, date})
+    const newSwim: Swim = {id, lengths, pool, date}
+    this.database.saveData(newSwim)
   }
 
   deleteSwim(id: number) {
@@ -28,10 +28,8 @@ class SwimController {
   }
 
   updateSwim(id: number, lengths: number, pool: string, date: Date) {
-    //todo: test to ensure only a swimobject passed to db to be updated
-    const swim = { id, lengths, pool, date }
+    const swim: Swim = { id, lengths, pool, date }
     this.database.updateData(swim)
-
   }
 }
 
