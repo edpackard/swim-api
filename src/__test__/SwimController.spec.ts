@@ -50,6 +50,9 @@ describe('getSwim', () => {
     expect(mockDb.getData).toHaveBeenCalled()
     expect(result).toBe(mockSwim2)
   })
+
+  //TODO: returns error if swim if ID does not exist
+
 })
 
 describe('createSwim', () => {
@@ -89,13 +92,20 @@ describe('createSwim', () => {
     swimController.createSwim(40, "Local Pool", date2)
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject2)
   })
+})
 
+describe('deleteSwim', () => { 
   it('deletes a swim by id', () => {
     jest.spyOn(mockDb, 'deleteData')
     swimController.deleteSwim(1)
     expect(mockDb.deleteData).toHaveBeenCalledWith(1)
   })
 
+  //TODO: does not delete if id not found
+
+})
+
+describe('updateSwim', () => {
   it('updates a swim by id', () => {
     const swimObject = { id: 1, lengths: 50, pool: "Local Pool", date: new Date ("1/1/11") }
 
@@ -103,4 +113,8 @@ describe('createSwim', () => {
     swimController.updateSwim(1, 50, "Local Pool", new Date ("1/1/11"))
     expect(mockDb.updateData).toHaveBeenCalledWith(swimObject)
   })
+
+  //TODO: does not update if id not found
+
+  //TODO: does not update if data not a valid swim object
 })

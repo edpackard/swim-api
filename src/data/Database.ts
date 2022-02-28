@@ -24,7 +24,12 @@ class Database {
   }
 
   deleteData (id: number) {
-    this.data = this.data.filter (item => item.id !== id) 
+    const retrievedData = this.data[id - 1]
+    if (retrievedData) {
+      this.data = this.data.filter (item => item.id !== id)
+    } else {
+      throw 'ID not found'
+    }
   }
 
   updateData (updatedData: any) {
