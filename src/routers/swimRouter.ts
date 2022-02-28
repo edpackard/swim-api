@@ -12,9 +12,12 @@ swimRouter.get('/', (_, res) => {
 
 swimRouter.get('/:id', (req, res) => {
   const id = parseInt(req.params.id)
-  const swim = swimController.getSwim(id)
-  res.status(200).json(swim)
-  //TODO: handle if id doesn't exist
+  try {
+    const swim = swimController.getSwim(id)
+    res.status(200).json(swim)
+  } catch (error) {
+    return res.status(404).json({ message: error})
+  }
 })
 
 swimRouter.post('/', (req, res) => {

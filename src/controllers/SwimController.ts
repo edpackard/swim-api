@@ -1,4 +1,5 @@
 import Database from "../data/Database"
+import { Swim } from "../models/SwimModel";
 
 class SwimController {
 
@@ -18,11 +19,11 @@ class SwimController {
     this.database.deleteData(id)
   }
 
-  getSwim(id: number) {
+  getSwim(id: number): Swim {
     return this.database.getData(id)
   }
 
-  getAllSwims(): Array<any> {
+  getAllSwims(): Array<Swim> {
     return this.database.getAllData()
   }
 
