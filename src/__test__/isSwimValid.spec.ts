@@ -15,8 +15,8 @@ describe('isSwimValid', () => {
     const badObject4 = { id: null, lengths: 200, pool: 'New Pool', date: date }
     
     expect(isSwimValid(badObject1)).toBe(false)
-    // expect(isSwimValid(badObject2)).toBe(false)
-    // expect(isSwimValid(badObject3)).toBe(false)
-    // expect(isSwimValid(badObject4)).toBe(false)
+    expect(isSwimValid(badObject2)).toBe(false)
+    expect(isSwimValid(badObject3)).toBe(false)
+    expect(isSwimValid(badObject4)).toBe(false)
   })
 })
