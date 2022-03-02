@@ -51,8 +51,6 @@ describe('getSwim', () => {
     expect(result).toBe(mockSwim2)
   })
 
-  //TODO: returns error if swim if ID does not exist
-
 })
 
 describe('createSwim', () => {
@@ -66,7 +64,7 @@ describe('createSwim', () => {
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject)
   })
 
-  it('does not save an invalid swim object with invalid date format', () => {
+  it('does not save an invalid swim object', () => {
     const badObject = { id: 1, lengths: "60", pool: 55, date: false }
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([])
     jest.spyOn(mockVc, 'isSwimValid').mockReturnValueOnce(false)
@@ -89,6 +87,7 @@ describe('createSwim', () => {
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject)
 
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([swimObject])
+    
     swimController.createSwim(40, "Local Pool", date2)
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject2)
   })
@@ -96,25 +95,27 @@ describe('createSwim', () => {
 
 describe('deleteSwim', () => { 
   it('deletes a swim by id', () => {
-    jest.spyOn(mockDb, 'deleteData')
     swimController.deleteSwim(1)
     expect(mockDb.deleteData).toHaveBeenCalledWith(1)
   })
-
-  //TODO: does not delete if id not found
-
 })
 
 describe('updateSwim', () => {
   it('updates a swim by id', () => {
     const swimObject = { id: 1, lengths: 50, pool: "Local Pool", date: new Date ("1/1/11") }
+    jest.spyOn(mockVc, 'isSwimValid').mockReturnValueOnce(true)
 
-    jest.spyOn(mockDb, 'updateData')
     swimController.updateSwim(1, 50, "Local Pool", new Date ("1/1/11"))
     expect(mockDb.updateData).toHaveBeenCalledWith(swimObject)
   })
 
-  //TODO: does not update if id not found
+  it('does not update if params would create invalid swim object', () => {
+    const badObject = { id: 10, lengths: "70", pool: false, date: 22222 }
+    jest.spyOn(mockVc, 'isSwimValid').mockReturnValueOnce(false)
+    //@ts-expect-error
+    expect(()=>{ swimController.updateSwim(10, "70", false, 22222) }).toThrowError('Error: cannot update with invalid parameters')
+    expect(mockVc.isSwimValid).toHaveBeenCalledWith(badObject)
+    expect(mockDb.updateData).not.toHaveBeenCalled()
+  })
 
-  //TODO: does not update if data not a valid swim object
 })

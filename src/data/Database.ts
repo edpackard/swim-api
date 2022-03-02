@@ -11,6 +11,7 @@ class Database {
   }
 
   getData (id: number): any {
+    console.log('getting data')
     const dataIndex = this._getObjectIndex(id)
     if (dataIndex >= 0 ) {
       return this.data[dataIndex]
@@ -20,10 +21,12 @@ class Database {
   }
 
   saveData (newData: any) {
+    console.log("saving data")
     this.data.push(newData)
   }
 
   deleteData (id: number) {
+    console.log('deleting data')
     const dataIndex = this._getObjectIndex(id)
     if (dataIndex >= 0) {
       this.data = this.data.filter (item => item.id !== id)

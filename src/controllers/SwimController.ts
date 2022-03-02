@@ -35,8 +35,12 @@ class SwimController {
   }
 
   updateSwim(id: number, lengths: number, pool: string, date: Date) {
-    const swim: Swim = { id, lengths, pool, date }
-    this.database.updateData(swim)
+    const updatedSwim: Swim = { id, lengths, pool, date }
+    if (this.validityCheck.isSwimValid(updatedSwim)) {
+      this.database.updateData(updatedSwim)
+    } else {
+      throw 'Error: cannot update with invalid parameters'
+    }
   }
 }
 
