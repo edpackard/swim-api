@@ -87,7 +87,20 @@ describe('createSwim', () => {
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject)
 
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([swimObject])
-    
+
+    swimController.createSwim(40, "Local Pool", date2)
+    expect(mockDb.saveData).toHaveBeenCalledWith(swimObject2)
+  })
+
+  it('handles situations where existing data has been deleted when generating IDs', () => {
+    const date = new Date("2/2/22")
+    const swimObject = { id: 45, lengths: 70, pool: "Olympic Pool", date: date }
+    const date2 = new Date("3/3/22")
+    const swimObject2 = { id: 46, lengths: 40, pool: "Local Pool", date: date2 }
+
+    jest.spyOn(mockVc, 'isSwimValid').mockReturnValue(true)
+    jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([swimObject])
+
     swimController.createSwim(40, "Local Pool", date2)
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject2)
   })
