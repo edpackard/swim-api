@@ -13,14 +13,7 @@ class SwimController {
   }
 
   createSwim(lengths: number, pool: string, date: Date) {
-    const allSwims = this.getAllSwims()
-    let id
-    if (allSwims.length > 0 ) {
-      id = (allSwims[allSwims.length-1].id) + 1
-    } else {
-      id = 1
-    }
-    //const id = this.getAllSwims().length + 1
+    const id = this._generateId()
     const newSwim = {id, lengths, pool, date}
     if (this.validityCheck.isSwimValid(newSwim)) {
       this.database.saveData(newSwim)
@@ -48,6 +41,11 @@ class SwimController {
     } else {
       throw 'Error: cannot update with invalid parameters'
     }
+  }
+
+  _generateId(): number {
+    const allSwims = this.getAllSwims()
+    return allSwims.length > 0 ? allSwims[allSwims.length -1].id + 1 : 1
   }
 
 }
