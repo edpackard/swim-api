@@ -11,9 +11,9 @@ class Database {
   }
 
   getData (id: number): any {
-    const retrievedData = this._getObjectById(id)
-    if (retrievedData) {
-      return retrievedData
+    const dataIndex = this.data.findIndex(data => data.id === id )
+    if (dataIndex >= 0 ) {
+      return this.data[dataIndex]
     } else {
       throw 'ID not found'
     }
@@ -24,7 +24,8 @@ class Database {
   }
 
   deleteData (id: number) {
-    if (this._getObjectById(id)) {
+    const dataIndex = this.data.findIndex(data => data.id === id)
+    if (dataIndex >= 0) {
       this.data = this.data.filter (item => item.id !== id)
     } else {
       throw 'ID not found'
@@ -33,7 +34,12 @@ class Database {
 
   updateData (updatedData: any) {
     const dataIndex = this.data.findIndex( data => data.id === updatedData.id)
-    this.data[dataIndex] = updatedData
+    console.log(updatedData, dataIndex)
+    if(dataIndex >= 0) {
+      this.data[dataIndex] = updatedData
+    } else {
+      throw 'ID not found'
+    }
   }
 
   _getObjectById (id: number) {
