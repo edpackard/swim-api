@@ -23,9 +23,9 @@ describe ('getAllData', () => {
 
 describe ('getData', () => {
   it('retrieves an object from database by ID', () => {
-    const swimObject = { id: 1, lengths: 40, pool: "Ironmonger Row", date: new Date('1/1/11') }
-    const swimObject2 = { id: 2, lengths: 40, pool: "Leisure Centre", date: new Date('2/2/13') }
-    const swimObject3 = { id: 3, lengths: 99, pool: "Serpentine", date: new Date('9/9/14') }
+    const swimObject = { id: 1, lengths: 40, pool: "Ironmonger Row", date: new Date('1/1/11').toISOString() }
+    const swimObject2 = { id: 2, lengths: 40, pool: "Leisure Centre", date: new Date('2/2/13').toISOString() }
+    const swimObject3 = { id: 3, lengths: 99, pool: "Serpentine", date: new Date('9/9/14').toISOString() }
     
     db.saveData(swimObject)
     db.saveData(swimObject2)
@@ -37,8 +37,8 @@ describe ('getData', () => {
   })
 
   it('returns error if object ID does not exist in database', () => {
-    const swimObject = { id: 1, lengths: 40, pool: "Ironmonger Row", date: new Date('1/1/11') }
-    const swimObject2 = { id: 2, lengths: 40, pool: "Leisure Centre", date: new Date('2/2/13') }
+    const swimObject = { id: 1, lengths: 40, pool: "Ironmonger Row", date: new Date('1/1/11').toISOString() }
+    const swimObject2 = { id: 2, lengths: 40, pool: "Leisure Centre", date: new Date('2/2/13').toISOString() }
 
     db.saveData(swimObject)
     db.saveData(swimObject2)
@@ -47,8 +47,8 @@ describe ('getData', () => {
   })
 
   it('handles non-sequential ids', () => {
-    const swimObject1 = { id: 21, lengths: 45, pool: "Spa Pool", date: new Date('1/2/17') }
-    const swimObject2 = { id: 45, lengths: 52, pool: "Public Pool", date: new Date('1/2/18') }
+    const swimObject1 = { id: 21, lengths: 45, pool: "Spa Pool", date: new Date('1/2/17').toISOString() }
+    const swimObject2 = { id: 45, lengths: 52, pool: "Public Pool", date: new Date('1/2/18').toISOString() }
     
     db.saveData(swimObject1)
     db.saveData(swimObject2)
@@ -60,9 +60,9 @@ describe ('getData', () => {
 
 describe('deleteData', () => {
   it('removes an item from database by ID', () => {
-    const swimObject = { id: 1, lengths: 200, pool: "Paddling Pool", date: new Date('3/3/13') }
+    const swimObject = { id: 1, lengths: 200, pool: "Paddling Pool", date: new Date('3/3/13').toISOString() }
     db.saveData(swimObject)
-    const swimObject2 = { id: 2, lengths: 300, pool: "Paddling Pool", date: new Date('4/4/14') }
+    const swimObject2 = { id: 2, lengths: 300, pool: "Paddling Pool", date: new Date('4/4/14').toISOString() }
     db.saveData(swimObject2)
     
     db.deleteData(1)
@@ -73,9 +73,9 @@ describe('deleteData', () => {
   })
 
   it('handles non-sequential IDs', () => {
-    const swimObject = { id: 32, lengths: 200, pool: "Paddling Pool", date: new Date('3/3/13') }
+    const swimObject = { id: 32, lengths: 200, pool: "Paddling Pool", date: new Date('3/3/13').toISOString() }
     db.saveData(swimObject)
-    const swimObject2 = { id: 54, lengths: 300, pool: "Paddling Pool", date: new Date('4/4/14') }
+    const swimObject2 = { id: 54, lengths: 300, pool: "Paddling Pool", date: new Date('4/4/14').toISOString() }
     db.saveData(swimObject2)
 
     db.deleteData(32)
@@ -87,8 +87,8 @@ describe('deleteData', () => {
   })
 
   it('returns error if object ID does not exist in database', () => {
-    const swimObject = { id: 1, lengths: 40, pool: "Ironmonger Row", date: new Date('1/1/11') }
-    const swimObject2 = { id: 2, lengths: 40, pool: "Leisure Centre", date: new Date('2/2/13') }
+    const swimObject = { id: 1, lengths: 40, pool: "Ironmonger Row", date: new Date('1/1/11').toISOString() }
+    const swimObject2 = { id: 2, lengths: 40, pool: "Leisure Centre", date: new Date('2/2/13').toISOString() }
 
     db.saveData(swimObject)
     db.saveData(swimObject2)
@@ -99,25 +99,25 @@ describe('deleteData', () => {
 
 describe('updateData', () => {
   it('updates a db item', () => {
-    const swimObject = { id: 1, lengths: 2000, pool: "Leisure Pool", date: new Date('5/5/15') }
+    const swimObject = { id: 1, lengths: 2000, pool: "Leisure Pool", date: new Date('5/5/15').toISOString() }
     db.saveData(swimObject)
-    const updatedObject = { id: 1, lengths: 200, pool: "Competition Pool", date: new Date('5/6/15') }
+    const updatedObject = { id: 1, lengths: 200, pool: "Competition Pool", date: new Date('5/6/15').toISOString() }
 
     db.updateData(updatedObject)
     expect(db.getData(1)).toEqual(updatedObject)
 
-    const swimObject2 = { id: 2, lengths: 320, pool: "Olympic Pool", date: new Date('5/6/16') }
+    const swimObject2 = { id: 2, lengths: 320, pool: "Olympic Pool", date: new Date('5/6/16').toISOString() }
     db.saveData(swimObject2)
-    const updatedObject2 = { id: 2, lengths: 420, pool: "Olympic Pool", date: new Date('5/7/16') }
+    const updatedObject2 = { id: 2, lengths: 420, pool: "Olympic Pool", date: new Date('5/7/16').toISOString() }
 
     db.updateData(updatedObject2)
     expect(db.getData(2)).toEqual(updatedObject2)
   })
 
   it('throws error if ID does not exist', () => {
-    const swimObject = { id: 1, lengths: 2000, pool: "Paddling Pool", date: new Date('5/5/15') }
+    const swimObject = { id: 1, lengths: 2000, pool: "Paddling Pool", date: new Date('5/5/15').toISOString() }
     db.saveData(swimObject)
-    const updatedObject = { id: 2, lengths: 100, pool: "Olympic Pool", date: new Date('3/7/16') }
+    const updatedObject = { id: 2, lengths: 100, pool: "Olympic Pool", date: new Date('3/7/16').toISOString() }
 
     expect(() => {db.updateData(updatedObject)}).toThrowError('ID not found')
     expect(db.getData(1)).toEqual(swimObject)
