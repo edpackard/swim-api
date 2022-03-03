@@ -123,3 +123,19 @@ describe('updateData', () => {
     expect(db.getData(1)).toEqual(swimObject)
   })
 })
+
+describe('getLatestItem', () => {
+  it('returns last item entered into db', () => {
+    expect(db.getLatestItem()).toBe(undefined)
+
+    const swimObject = { id: 35, lengths: 400, pool: "Swim park", date: new Date('1/2/13').toISOString() }
+    db.saveData(swimObject)
+    
+    expect(db.getLatestItem()).toBe(swimObject)
+
+    const swimObject2 = { id: 36, lengths: 200, pool: "Swimming Pool", date: new Date('5/12/16').toISOString() }
+    db.saveData(swimObject2)
+
+    expect(db.getLatestItem()).toBe(swimObject2)
+  })
+})

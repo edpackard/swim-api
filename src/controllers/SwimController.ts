@@ -44,8 +44,8 @@ class SwimController {
   }
 
   _generateId(): number {
-    const allSwims = this.getAllSwims()
-    return allSwims.length > 0 ? allSwims[allSwims.length -1].id + 1 : 1
+    const lastItem = this.database.getLatestItem()
+    return lastItem ? lastItem.id + 1 : 1 
   }
 
 }

@@ -82,12 +82,11 @@ describe('createSwim', () => {
 
     jest.spyOn(mockVc, 'isSwimValid').mockReturnValue(true)
 
-    jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([])
+    jest.spyOn(mockDb, 'getLatestItem').mockReturnValueOnce(undefined)
     swimController.createSwim(70, "Olympic Pool", date)
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject)
 
-    jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([swimObject])
-
+    jest.spyOn(mockDb, 'getLatestItem').mockReturnValueOnce(swimObject)
     swimController.createSwim(40, "Local Pool", date2)
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject2)
   })
@@ -99,7 +98,7 @@ describe('createSwim', () => {
     const swimObject2 = { id: 46, lengths: 40, pool: "Local Pool", date: date2 }
 
     jest.spyOn(mockVc, 'isSwimValid').mockReturnValue(true)
-    jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([swimObject])
+    jest.spyOn(mockDb, 'getLatestItem').mockReturnValueOnce(swimObject)
 
     swimController.createSwim(40, "Local Pool", date2)
     expect(mockDb.saveData).toHaveBeenCalledWith(swimObject2)

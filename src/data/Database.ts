@@ -19,6 +19,10 @@ class Database {
     }
   }
 
+  getLatestItem (): any {
+    return this.data[this.data.length - 1]
+  }
+
   saveData (newData: any) {
     this.data.push(newData)
   }
