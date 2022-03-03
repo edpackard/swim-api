@@ -30,7 +30,7 @@ describe('getAllSwims', () => {
   });
 
   it('returns array with swims if objects stored', () => {
-    const mockSwim = { id: 1, lengths: 40, pool: 'Lido', date: new Date ("1/22/22") }
+    const mockSwim = { id: 1, lengths: 40, pool: 'Lido', date: new Date ("1/22/22").toISOString() }
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([mockSwim])
     
     const result = swimController.getAllSwims()
@@ -43,7 +43,7 @@ describe('getAllSwims', () => {
 describe('getSwim', () => {
 
   it('returns a swim based on ID', () => {
-    const mockSwim2 = { id: 2, lengths: 45, pool: 'Another Pool', date: new Date ("1/30/22") }
+    const mockSwim2 = { id: 2, lengths: 45, pool: 'Another Pool', date: new Date ("1/30/22").toISOString() }
     jest.spyOn(mockDb, 'getData').mockReturnValueOnce(mockSwim2)
 
     const result = swimController.getSwim(2)
@@ -55,7 +55,7 @@ describe('getSwim', () => {
 
 describe('createSwim', () => {
   it('saves a valid new swim object with ID', () => {
-    const date = new Date("1/1/22")
+    const date = new Date("1/1/22").toISOString()
     const swimObject = { id: 1, lengths: 60, pool: "Local Pool", date: date }
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([])
     jest.spyOn(mockVc, 'isSwimValid').mockReturnValueOnce(true)
@@ -75,9 +75,9 @@ describe('createSwim', () => {
   })
 
   it('generates sequential IDs', () => {
-    const date = new Date("2/2/22")
+    const date = new Date("2/2/22").toISOString()
     const swimObject = { id: 1, lengths: 70, pool: "Olympic Pool", date: date }
-    const date2 = new Date("3/3/22")
+    const date2 = new Date("3/3/22").toISOString()
     const swimObject2 = { id: 2, lengths: 40, pool: "Local Pool", date: date2 }
 
     jest.spyOn(mockVc, 'isSwimValid').mockReturnValue(true)
@@ -93,9 +93,9 @@ describe('createSwim', () => {
   })
 
   it('handles situations where existing data has been deleted when generating IDs', () => {
-    const date = new Date("2/2/22")
+    const date = new Date("2/2/22").toISOString()
     const swimObject = { id: 45, lengths: 70, pool: "Olympic Pool", date: date }
-    const date2 = new Date("3/3/22")
+    const date2 = new Date("3/3/22").toISOString()
     const swimObject2 = { id: 46, lengths: 40, pool: "Local Pool", date: date2 }
 
     jest.spyOn(mockVc, 'isSwimValid').mockReturnValue(true)
@@ -115,10 +115,10 @@ describe('deleteSwim', () => {
 
 describe('updateSwim', () => {
   it('updates a swim by id', () => {
-    const swimObject = { id: 1, lengths: 50, pool: "Local Pool", date: new Date ("1/1/11") }
+    const swimObject = { id: 1, lengths: 50, pool: "Local Pool", date: new Date ("1/1/11").toISOString() }
     jest.spyOn(mockVc, 'isSwimValid').mockReturnValueOnce(true)
 
-    swimController.updateSwim(1, 50, "Local Pool", new Date ("1/1/11"))
+    swimController.updateSwim(1, 50, "Local Pool", new Date ("1/1/11").toISOString())
     expect(mockDb.updateData).toHaveBeenCalledWith(swimObject)
   })
 

@@ -1,17 +1,22 @@
 class ValidityChecker {
 
-  isSwimValid (object: any): boolean {
-    if (object.date instanceof Date &&
-      typeof object.pool === 'string' &&
-      typeof object.lengths === 'number' &&
-      typeof object.id === 'number') 
+  isSwimValid (testObject: any): boolean {
+    if (this._isDate(testObject.date) &&
+      typeof testObject.pool === 'string' &&
+      typeof testObject.lengths === 'number' &&
+      typeof testObject.id === 'number') 
     { 
       return true 
     } 
     return false
   }
-  
+
+  _isDate (testString: string): boolean {
+    const testDate: any = new Date(testString)
+    return testString !== null && 
+      (testDate !== "Invalid Date") && 
+      !isNaN(testDate);
+  }
 }
 
 export default ValidityChecker
-

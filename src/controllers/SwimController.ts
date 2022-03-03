@@ -12,7 +12,7 @@ class SwimController {
     this.validityCheck = validity
   }
 
-  createSwim(lengths: number, pool: string, date: Date) {
+  createSwim(lengths: number, pool: string, date: string) {
     const id = this._generateId()
     const newSwim = {id, lengths, pool, date}
     if (this.validityCheck.isSwimValid(newSwim)) {
@@ -34,7 +34,7 @@ class SwimController {
     return this.database.getAllData()
   }
 
-  updateSwim(id: number, lengths: number, pool: string, date: Date) {
+  updateSwim(id: number, lengths: number, pool: string, date: string) {
     const updatedSwim: Swim = { id, lengths, pool, date }
     if (this.validityCheck.isSwimValid(updatedSwim)) {
       this.database.updateData(updatedSwim)
