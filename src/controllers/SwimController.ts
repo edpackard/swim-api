@@ -2,6 +2,8 @@ import Database from "../data/Database"
 import { Swim } from "../models/SwimModel";
 import ValidityCheckers from "../utils/ValidityChecker";
 
+//TODO: extract ID generation to DB class
+
 class SwimController {
 
   database: Database;
