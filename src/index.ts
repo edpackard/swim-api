@@ -1,13 +1,15 @@
 import express from 'express'
-import swimRouter from './routers/swimRouter'
+import SwimRouter from './routers/swimRouter'
 
 const app = express();
 
 const PORT = 8080;
 
+const swimRouter = new SwimRouter
+
 app.use(express.json())
 
-app.use('/swim', swimRouter);
+app.use('/swim', swimRouter.getRouter());
 
 app.get('/', (_, res) => res.send ('Welcome to the server'))
 
