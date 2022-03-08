@@ -6,7 +6,7 @@ class PoolController {
   database: Database; 
 
   constructor(db: Database) {
-    this.database = db
+    this.database = db    
   }
 
   getAllPools (req: Request, res: Response) {
