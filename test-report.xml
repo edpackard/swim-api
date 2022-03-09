@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/edwardpackard/Projects/swim-api/src/__test__/SwimController.spec.ts">
+    <testCase name="getAllSwims returns an empty array if no swims stored" duration="2"/>
+    <testCase name="getAllSwims returns array with swims if objects stored" duration="2"/>
+    <testCase name="getSwim returns a swim based on ID" duration="1"/>
+    <testCase name="createSwim saves a valid new swim object with ID" duration="0"/>
+    <testCase name="createSwim does not save an invalid swim object" duration="1"/>
+    <testCase name="createSwim generates sequential IDs" duration="0"/>
+    <testCase name="createSwim handles situations where existing data has been deleted when generating IDs" duration="1"/>
+    <testCase name="deleteSwim deletes a swim by id" duration="0"/>
+    <testCase name="updateSwim updates a swim by id" duration="0"/>
+    <testCase name="updateSwim does not update if params would create invalid swim object" duration="0"/>
+  </file>
+  <file path="/Users/edwardpackard/Projects/swim-api/src/__test__/Database.spec.ts">
+    <testCase name="saveData stores a new object in database" duration="4"/>
+    <testCase name="getAllData should be empty on initialisation" duration="0"/>
+    <testCase name="getData retrieves an object from database by ID" duration="0"/>
+    <testCase name="getData returns error if object ID does not exist in database" duration="0"/>
+    <testCase name="getData handles non-sequential ids" duration="0"/>
+    <testCase name="deleteData removes an item from database by ID" duration="1"/>
+    <testCase name="deleteData handles non-sequential IDs" duration="0"/>
+    <testCase name="deleteData returns error if object ID does not exist in database" duration="0"/>
+    <testCase name="updateData updates a db item" duration="1"/>
+    <testCase name="updateData throws error if ID does not exist" duration="0"/>
+    <testCase name="getLatestItem returns last item entered into db" duration="0"/>
+  </file>
+  <file path="/Users/edwardpackard/Projects/swim-api/src/__test__/ValidityChecker.spec.ts">
+    <testCase name="isSwimValid returns true for a valid swim object" duration="2"/>
+    <testCase name="isSwimValid returns false for an invalid swim object" duration="1"/>
+  </file>
+  <file path="/Users/edwardpackard/Projects/swim-api/src/__test__/PoolController.spec.ts">
+    <testCase name="getAllPools returns an empty array if no swims stored" duration="2"/>
+    <testCase name="createPool create a valid new pool object with ID" duration="1"/>
+    <testCase name="getPool returns a swim by ID" duration="0"/>
+  </file>
+  <file path="/Users/edwardpackard/Projects/swim-api/src/__test__/swimRouter.spec.ts">
+    <testCase name="good route responds to /" duration="11"/>
+  </file>
+  <file path="/Users/edwardpackard/Projects/swim-api/src/__test__/PoolRouter.spec.ts">
+    <testCase name="get all pools happy route: responds to /" duration="10"/>
+    <testCase name="get pool by ID happy route: responds to /1" duration="3"/>
+    <testCase name="create new pool happy route: responds to / post" duration="11"/>
+  </file>
+</testExecutions>
