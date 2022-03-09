@@ -20,3 +20,16 @@ describe('get all pools: good route', () => {
     expect(mockController.getAllPools).toHaveBeenCalledTimes(1)
   })
 })
+
+describe('get pool by ID: good route', () => {
+  test ( 'responds to /1', async () => {
+    await request(app).get('/1');
+    expect(mockController.getPool).toHaveBeenCalledTimes(1)
+    expect(mockController.getPool).toHaveBeenCalledWith(
+      expect.objectContaining({ 
+        params: { id: "1" },        
+      }),
+      expect.anything()
+      );
+  })
+})

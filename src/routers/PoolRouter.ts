@@ -18,6 +18,11 @@ class PoolRouter {
       this.poolController.getAllPools(req, res)
       res.end()
     })
+
+    this.router.get('/:id', (req, res) => {
+      this.poolController.getPool(req, res)
+      res.end()
+    })
   }
 
   getRouter() {
