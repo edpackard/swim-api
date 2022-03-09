@@ -17,5 +17,5 @@ app.use('/pool', poolRouter.getRouter());
 app.get('/', (_, res) => res.send ('Welcome to the server'))
 
 app.listen(PORT, () => {
-  console.log(`Server is running at https://localhost:${PORT}`)
+  console.log(`Server is running at http://localhost:${PORT}`)
 });
