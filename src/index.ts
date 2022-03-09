@@ -1,6 +1,7 @@
 import express from 'express'
 import SwimRouter from './routers/swimRouter'
 import PoolRouter from './routers/PoolRouter';
+import helmet from 'helmet'
 
 const app = express();
 
@@ -10,6 +11,7 @@ const swimRouter = new SwimRouter
 const poolRouter = new PoolRouter
 
 app.use(express.json())
+app.use(helmet())
 
 app.use('/swim', swimRouter.getRouter());
 app.use('/pool', poolRouter.getRouter());
