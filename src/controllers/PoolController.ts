@@ -14,6 +14,12 @@ class PoolController {
     res.status(200).json(data)
   }
 
+  getPool (req: Request, res: Response) {
+    const id = parseInt(req.params.id)
+    const data = this.database.getData(id)
+    res.status(200).json(data)
+  }
+
   createPool (req: Request, res: Response) {
     const name = req.body.name
     const length = req.body.length

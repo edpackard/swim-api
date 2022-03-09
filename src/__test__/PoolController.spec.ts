@@ -19,7 +19,6 @@ beforeEach(() => {
   poolController = new PoolController(mockDb)
   mockStatus = jest.fn().mockReturnThis()
   mockJson = jest.fn().mockReturnThis() 
-  mockRequest = {} as Partial<Request> as Request
   mockResponse = {
     json: mockJson,
     status: mockStatus,
@@ -33,7 +32,7 @@ afterEach(() => {
 describe('getAllPools', () => {
 
   it ('returns an empty array if no swims stored', () => {
-  
+    mockRequest = {} as Partial<Request> as Request
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([])
     poolController.getAllPools(mockRequest, mockResponse)
     expect(mockDb.getAllData).toHaveBeenCalled()
@@ -43,6 +42,7 @@ describe('getAllPools', () => {
 })
 
 describe('createPool', () => {
+
   it ('create a valid new pool object with ID', () => {
     mockRequest = {
       body: { name: 'Local Pool', length: 25}
@@ -51,5 +51,22 @@ describe('createPool', () => {
     poolController.createPool(mockRequest, mockResponse)
     expect(mockDb.saveData).toHaveBeenCalledWith(poolObject)
     expect(mockStatus).toHaveBeenCalledWith(200)
+  })
+})
+
+describe('getPool', () => {
+  
+  it ('returns a swim by ID', () => {
+    mockRequest = {
+      params: { id: "1" }
+    } as Partial<Request> as Request
+    const poolObject = { id: 1, length: 30, name: "New Pool" }
+    jest.spyOn(mockDb, 'getData').mockReturnValueOnce(poolObject)
+
+    poolController.getPool(mockRequest, mockResponse)
+    expect(mockDb.getData).toHaveBeenCalledTimes(1)
+    expect(mockDb.getData).toHaveBeenCalledWith(1)
+    expect(mockStatus).toHaveBeenCalledWith(200)
+    expect(mockJson).toHaveBeenCalledWith(poolObject)
   })
 })
