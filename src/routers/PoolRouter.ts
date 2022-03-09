@@ -23,6 +23,11 @@ class PoolRouter {
       this.poolController.getPool(req, res)
       res.end()
     })
+
+    this.router.post('/', (req, res) => {
+      this.poolController.createPool(req, res)
+      res.end()
+    })
   }
 
   getRouter() {
