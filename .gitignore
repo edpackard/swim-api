@@ -2,4 +2,3 @@ node_modules
 dist
 coverage
 .scannerwork
-test-report.xml
