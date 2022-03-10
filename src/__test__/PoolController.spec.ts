@@ -70,3 +70,7 @@ describe('getPool', () => {
     expect(mockJson).toHaveBeenCalledWith(poolObject)
   })
 })
+
+//TODO: TDD error handling for above
+//TODO: TDD update function
+//TODO: TDD delete function

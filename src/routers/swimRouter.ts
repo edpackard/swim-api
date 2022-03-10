@@ -16,8 +16,14 @@ constructor(controller = new SwimController(new Database, new ValidityChecker) )
 
 private setUpRouter() {
   this.router.get('/', (_, res) => {
-  const allSwims = this.swimController.getAllSwims()
-  res.status(200).json(allSwims)
+  try {
+    const allSwims = this.swimController.getAllSwims()
+    res.status(200).json(allSwims)
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(500).json({ message: error.message})
+    }
+    }
   })
 
   this.router.get('/:id', (req, res) => {
@@ -49,6 +55,7 @@ private setUpRouter() {
     const date = req.body.date
     this.swimController.updateSwim(id, lengths, pool, date)
     res.status(204).end()
+    //TODO: error handling
   })
 
   this.router.delete('/:id', (req, res) => {
@@ -62,7 +69,6 @@ private setUpRouter() {
   getRouter() {
     return this.router
   }
-
 }
 
 export default SwimRouter
