@@ -1,4 +1,4 @@
-import { Router } from "express"
+import e, { Router } from "express"
 import SwimController from "../controllers/SwimController"
 import Database from "../data/Database";
 import ValidityChecker from "../utils/ValidityChecker";
@@ -16,8 +16,14 @@ constructor(controller = new SwimController(new Database, new ValidityChecker) )
 
 private setUpRouter() {
   this.router.get('/', (_, res) => {
-  const allSwims = this.swimController.getAllSwims()
-  res.status(200).json(allSwims)
+  try {
+    const allSwims = this.swimController.getAllSwims()
+    res.status(200).json(allSwims)
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(500).json({ message: error.message})
+    }
+    }
   })
 
   this.router.get('/:id', (req, res) => {
