@@ -32,4 +32,14 @@ describe('get all swims', () => {
     })
 })
 
+describe('get swim by ID', () => {
+  test("happy route: responds to /:id", async() => {
+    const swimObject = { id: 1, lengths: 50, pool: "Local Pool", date: new Date ("1/1/11").toISOString() }
+    jest.spyOn(mockController, 'getSwim').mockReturnValue(swimObject)
+    const res = await request(app).get('/1')
+    expect(res.statusCode).toBe(200)
+    expect(res.body).toStrictEqual(swimObject)
+  })
+})
+
 //TODO: happy and unhappy routes for: get by ID, post, put by id, delete by id
