@@ -3,7 +3,6 @@ import SwimController from "../controllers/SwimController";
 
 import request from 'supertest'
 import express from 'express'
-import { createCipheriv } from "crypto";
 
 jest.mock('../controllers/SwimController')
 const mockedController = (SwimController as unknown) as jest.Mock<SwimController>;
@@ -29,6 +28,8 @@ describe('get all swims', () => {
     });
     const res = await request(app).get('/') 
     expect(res.statusCode).toBe(500)
-    expect(res.body).toMatchObject({message: 'Fake Error Message'})
+    expect(res.body).toStrictEqual({message: 'Fake Error Message'})
     })
 })
+
+//TODO: happy and unhappy routes for: get by ID, post, put by id, delete by id
