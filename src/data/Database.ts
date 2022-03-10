@@ -15,7 +15,7 @@ class Database {
     if (dataIndex >= 0 ) {
       return this.data[dataIndex]
     } else {
-      throw 'ID not found'
+      this._throwIdError()
     }
   }
 
@@ -32,7 +32,7 @@ class Database {
     if (dataIndex >= 0) {
       this.data = this.data.filter (item => item.id !== id)
     } else {
-      throw 'ID not found'
+      this._throwIdError()
     }
   }
 
@@ -41,13 +41,19 @@ class Database {
     if(dataIndex >= 0) {
       this.data[dataIndex] = updatedData
     } else {
-      throw 'ID not found'
+      this._throwIdError()
     }
   }
 
   _getObjectIndex (id: number): number {
     return this.data.findIndex(data => data.id === id)
   }
+
+  _throwIdError () {
+    throw Error('ID not found')
+  }
 }
+
+
 
 export default Database

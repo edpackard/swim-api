@@ -69,7 +69,9 @@ describe('createSwim', () => {
     jest.spyOn(mockDb, 'getAllData').mockReturnValueOnce([])
     jest.spyOn(mockVc, 'isSwimValid').mockReturnValueOnce(false)
     //@ts-expect-error
-    expect(()=>{ swimController.createSwim("60", 55, false) }).toThrowError('Error: not a swim object')
+    expect(()=>{ swimController.createSwim("60", 55, false) }).toThrow('Error: not a swim object')
+    //@ts-expect-error
+    expect(()=>{ swimController.createSwim("60", 55, false) }).toThrowError(Error)
     expect(mockVc.isSwimValid).toHaveBeenCalledWith(badObject)
     expect(mockDb.saveData).not.toHaveBeenCalled()
   })
@@ -125,7 +127,9 @@ describe('updateSwim', () => {
     const badObject = { id: 10, lengths: "70", pool: false, date: 22222 }
     jest.spyOn(mockVc, 'isSwimValid').mockReturnValueOnce(false)
     //@ts-expect-error
-    expect(()=>{ swimController.updateSwim(10, "70", false, 22222) }).toThrowError('Error: cannot update with invalid parameters')
+    expect(()=>{ swimController.updateSwim(10, "70", false, 22222) }).toThrow('Error: cannot update with invalid parameters')
+    //@ts-expect-error
+    expect(()=>{ swimController.updateSwim(10, "70", false, 22222) }).toThrowError(Error)
     expect(mockVc.isSwimValid).toHaveBeenCalledWith(badObject)
     expect(mockDb.updateData).not.toHaveBeenCalled()
   })
