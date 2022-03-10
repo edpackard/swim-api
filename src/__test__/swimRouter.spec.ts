@@ -55,4 +55,25 @@ describe('post swim', () => {
   })
 })
 
+describe('update swim', () => {
+  test("happy route: successfully updates", async() => {
+    const testDate = new Date ("2/3/14").toISOString()
+    const res = await request(app)
+      .put('/1')
+      .send({ lengths: 40, pool: "Updated Pool", date: testDate})
+    expect(res.statusCode).toBe(204)
+    expect(mockController.updateSwim).toHaveBeenCalledTimes(1)
+    expect(mockController.updateSwim).toHaveBeenCalledWith(1, 40, 'Updated Pool', testDate)
+  })
+})
+
+describe('delete swim', () => {
+  test("happy route: successfully deletes", async() => {
+    const res = await request(app).delete('/4')
+    expect(res.statusCode).toBe(204)
+    expect(mockController.deleteSwim).toHaveBeenCalledTimes(1)
+    expect(mockController.deleteSwim).toHaveBeenCalledWith(4)
+  })
+})
+
 //TODO: happy and unhappy routes for: get by ID, post, put by id, delete by id

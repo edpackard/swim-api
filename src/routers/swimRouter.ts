@@ -55,6 +55,7 @@ private setUpRouter() {
     const date = req.body.date
     this.swimController.updateSwim(id, lengths, pool, date)
     res.status(204).end()
+    //TODO: error handling
   })
 
   this.router.delete('/:id', (req, res) => {
