@@ -44,6 +44,8 @@ describe ('getData', () => {
     db.saveData(swimObject2)
 
     expect(() => {db.getData(3)}).toThrow('ID not found')
+    expect(() => {db.getData(3)}).toThrowError(Error)
+
   })
 
   it('handles non-sequential ids', () => {
@@ -94,6 +96,8 @@ describe('deleteData', () => {
     db.saveData(swimObject2)
 
     expect(() => {db.deleteData(3)}).toThrow('ID not found')
+    expect(() => {db.deleteData(3)}).toThrowError(Error)
+
   })
 })
 
@@ -119,7 +123,8 @@ describe('updateData', () => {
     db.saveData(swimObject)
     const updatedObject = { id: 2, lengths: 100, pool: "Olympic Pool", date: new Date('3/7/16').toISOString() }
 
-    expect(() => {db.updateData(updatedObject)}).toThrowError('ID not found')
+    expect(() => {db.updateData(updatedObject)}).toThrow('ID not found')
+    expect(() => {db.updateData(updatedObject)}).toThrowError(Error)
     expect(db.getData(1)).toEqual(swimObject)
   })
 })
