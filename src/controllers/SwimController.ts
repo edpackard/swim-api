@@ -20,7 +20,7 @@ class SwimController {
     if (this.validityCheck.isSwimValid(newSwim)) {
       this.database.saveData(newSwim)
     } else {
-      throw 'Error: not a swim object'
+      throw Error('Error: not a swim object')
     }
   }
 
@@ -41,7 +41,7 @@ class SwimController {
     if (this.validityCheck.isSwimValid(updatedSwim)) {
       this.database.updateData(updatedSwim)
     } else {
-      throw 'Error: cannot update with invalid parameters'
+      throw Error('Error: cannot update with invalid parameters')
     }
   }
 
