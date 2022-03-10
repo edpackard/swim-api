@@ -1,4 +1,4 @@
-import e, { Router } from "express"
+import { Router } from "express"
 import SwimController from "../controllers/SwimController"
 import Database from "../data/Database";
 import ValidityChecker from "../utils/ValidityChecker";
@@ -68,7 +68,6 @@ private setUpRouter() {
   getRouter() {
     return this.router
   }
-
 }
 
 export default SwimRouter

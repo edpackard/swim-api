@@ -12,6 +12,7 @@ mockController = new mockedController
 const swimRouter = new SwimRouter(mockController)
 
 const app = express();
+app.use(express.json())
 app.use('/', swimRouter.getRouter())
 
 describe('get all swims', () => {
@@ -39,6 +40,18 @@ describe('get swim by ID', () => {
     const res = await request(app).get('/1')
     expect(res.statusCode).toBe(200)
     expect(res.body).toStrictEqual(swimObject)
+  })
+})
+
+describe('post swim', () => {
+  test("happy route: successfully posts", async() => {
+    const testDate = new Date ("1/2/13").toISOString()
+    const res = await request(app)
+      .post('/')
+      .send({ lengths: 50, pool: "Pool", date: testDate })
+    expect(res.statusCode).toBe(201)
+    expect(mockController.createSwim).toHaveBeenCalledTimes(1)
+    expect(mockController.createSwim).toHaveBeenCalledWith(50, "Pool", testDate)
   })
 })
 
