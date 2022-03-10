@@ -76,4 +76,4 @@ describe('delete swim', () => {
   })
 })
 
-//TODO: happy and unhappy routes for: get by ID, post, put by id, delete by id
+//TODO: tests for unhappy routes for: get by ID, post, put by id, delete by id
